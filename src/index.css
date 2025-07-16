@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 
-/* html, body {
+html, body {
   margin: 0;
   padding: 0;
   font-family:sans-serif;
@@ -50,4 +50,4 @@
   .animate-loading-bar {
     animation: loading 0.8s ease infinite ;
   }
-} */
+}

@@ -9,9 +9,19 @@ export const Navbar = ({ menuOpen, setMenuOpen }) => {
   }, [menuOpen]);
 
   return (
+    
+     
+        
     <nav className="fixed top-0 w-full z-40 bg-gray-200 backdrop-blur-lg border-b border-white/10 shadow-xl">
       <div className="mx-auto px-4">
         <div className="flex items-center justify-between h-15">
+          <div className="font-mono text-xl font-bold text-gray-800">
+            <img
+              src="/openart-image_iaU5tqF4_1743225684481_raw_copy-removebg-preview.png"
+              className="rounded-full w-12 h-12 bg-gray-200"
+              alt="Logo"
+            />
+          </div>
 
           <div className="flex items-center md:hidden space-x-4">
             <button className="px-4 py-2 border-2 border-[#489af2] text-gray-800 rounded-lg hover:bg-[#489af2] hover:text-white transition">
