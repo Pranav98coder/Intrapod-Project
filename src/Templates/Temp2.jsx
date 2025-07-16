@@ -1,96 +1,133 @@
-import profile from './profile.jpeg'
-import phone from './phone.jpeg'
-import mail from './mail.png'
-import loc from './location.png'
+import { Arrow } from "@radix-ui/react-select";
+import { Mail, Phone, MapPin, Globe } from "lucide-react";
+import { forwardRef } from "react";
 
-const Temp2 = () => {
-    return ( 
-    
-    <div className="flex flex-row ">
-        <div className="flex flex-col ml-[3%] w-[95%]  border-r-2 border-l-2">
-            <header className="flex flex-col items-start space-x-4 bg-[#FFFFF0]">
-                <img src={profile} alt="Profile Picture" className="ml-[40%] mr-[0] w-30 h-30 rounded-full border-black-1 " />
-                
-                <div className="bg-[#42b3f5] relative left-0 w-[90%] rounded-r-3xl ">
-                <h1 className="relative pl-10 text-3xl font-bold text-[white] ">Your Name</h1>
-                <p className="relative pl-10  font-bold text-[white]">Professional Title</p>
-                </div>
+const ResumeTemplate = forwardRef((props, ref) => {
+  const { personal, experience, education, skills } = props;
 
-            </header>
-            <div className='pt-5'>
-                <div className='flex flex-row pl-10'><img src={phone} className="h-8 w-8" alt="phone"></img><span className="text-gray-600">:phone no</span></div>
-                <div className='flex flex-row pl-10'><img src={mail} className="h-8 w-8" alt="mail"></img><span className="text-gray-600">:mail id</span></div>
-                <div className='flex flex-row pl-10'><img src={loc} className="h-8 w-8" alt="location"></img><span className="text-gray-600">:address</span></div>
-
+  return (
+    <div
+      ref={ref}
+      className="min-h-screen bg-gray-50 p-4 md:p-8 flex items-center justify-center"
+    >
+      <div className="w-full max-w-4xl bg-white rounded shadow-md overflow-hidden print:shadow-none">
+        {/* Resume Content */}
+        <div className="p-6 md:p-8">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 pb-6 border-b border-gray-200">
+            <div className="flex-1">
+              <h1 className="text-3xl font-bold text-gray-800">
+                {personal.firstName} {personal.lastName}
+              </h1>
+              <p className="text-sm text-gray-600 mt-1">
+                {personal.profession}
+              </p>
             </div>
-            <div className="border-t border-gray-400 my-4 m-5">
-            <h1 className="pl-10 text-3xl font-bold relative ">Skills:</h1>
-            <ul>
-                <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                
-            </ul>
-                
+            <div className="mt-4 md:mt-0 flex flex-col gap-2 text-sm text-gray-600">
+              <div className="flex items-center gap-2">
+                <Mail className="h-5 w-5 text-gray-500" />
+                <span>{personal.email}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-5 w-5 text-gray-500" />
+                <span>{personal.phone}</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <MapPin className="h-5 w-5 text-gray-500" />
+                <span>{personal.address}</span>
+              </div>
             </div>
-            <div className="border-t border-gray-400 my-4 m-5">
-            <h1 className="pl-10 text-3xl font-bold ">Language:</h1>
-            <ul>
-                <li className="list-disc list-inside  text-gray-600">English</li>
-                <li className="list-disc list-inside  text-gray-600">Hindi</li>
-                <li className="list-disc list-inside  text-gray-600">Telugu</li>
-                
-                
-            </ul>
-                
+          </div>
+
+          {/* Other Resume Sections */}
+          <div className="mb-6">
+            <h2 className="text-lg font-semibold text-gray-800 mb-2">
+              Professional Summary
+            </h2>
+            <p className="text-gray-600 text-sm">{personal.summary}</p>
+          </div>
+
+          {/* Experience Section */}
+          {experience.newExpData?.experienceItems?.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800 mb-3">
+                Experience
+              </h2>
+              <ul>
+                {experience.newExpData.experienceItems.map((exp, index) => (
+                  <li key={index}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-medium text-gray-800">
+                          {exp.position}
+                        </h3>
+                        <p className="text-gray-600 text-sm">{exp.company}</p>
+                      </div>
+                      <span className="text-gray-500 text-sm">
+                        {exp.startDate} - {exp.endDate}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-gray-600 pl-1">
+                      {exp.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="border-t border-gray-400  ">
-               <div className="bg-[#42b3f5] rounded-l-3xl pl-3 border-t text-[white] ml-5 ">
-                  <h1 className="  pl-10 text-3xl font-bold text-[white]">Professional Summary:</h1>
-               
-            
-                  <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a</p>
-               </div>
-               <div className="mt-2 border-t border-gray-400 ml-5 ">
-                  <h1 className="pl-10 text-3xl font-bold ">Education:</h1>
-                  <h3 className="pl-10  text-gray-600">Degree - </h3>
-                  <h3 className="pl-10  text-gray-600">University - </h3>
-                  <p className="text-gray-600">Additional details.</p>
-               </div>
-               <div className="border-t border-gray-400  ml-5">
-                    <h1 className="pl-10 text-3xl font-bold ">Experience:</h1>
-                    <h2 className="pl-10  text-gray-600 ">Company-</h2>
-                    <h3 className="pl-10  text-gray-600 ">Job position-</h3>
-                    
-                    <ul>
-                      <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                      <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                      <li className="list-disc list-inside  text-gray-600">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis .</li>
-                    </ul>
-                
-                
-                </div>
-                <div className="border-t border-gray-400 ml-5 ">
-                  <h1 className="pl-10 text-3xl font-bold ">Awards:</h1>
-                  <p className="list-disc list-inside  text-gray-600"> Your Acheivements</p>
-                </div>
+          )}
 
+          {/* Education Section */}
+          {education.educationItems?.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800 mb-3">
+                Education
+              </h2>
+              <ul className="space-y-3">
+                {education.educationItems.map((ed, index) => (
+                  <li key={index}>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <h3 className="font-medium text-gray-800">
+                          {ed.degree}
+                        </h3>
+                        <p className="text-gray-600 text-sm">
+                          {ed.institution}
+                        </p>
+                      </div>
+                      <span className="text-gray-500 text-sm">
+                        {ed.startDate} - {ed.endDate}
+                      </span>
+                    </div>
+                    <p className="mt-1 text-sm text-gray-600">
+                      {ed.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
             </div>
-           
+          )}
 
-
+          {/* Skills */}
+          {skills.data?.skills?.length > 0 && (
+            <div>
+              <h2 className="text-lg font-semibold text-gray-800 mb-3">
+                Skills
+              </h2>
+              <ul className="flex flex-wrap gap-2">
+                {skills.data.certifications.map((certificate, index) => (
+                  <li
+                    key={index}
+                    className="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded"
+                  >
+                    {certificate.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
-        
-            
-            
-            
-        
+      </div>
     </div>
+  );
+});
 
-        
-    
-
-     );
-}
- 
-export default Temp2;
+export default ResumeTemplate;

@@ -57,8 +57,8 @@ export default function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-white">
-      <Card className="p-6 w-full max-w-md shadow-lg rounded-lg bg-gray-50">
+    <div className="flex justify-center items-center h-screen">
+      <Card className="p-6 w-full max-w-md shadow-lg z-100 rounded-lg bg-gray-50">
         <h2 className="text-center text-2xl font-bold mb-4">Sign Up</h2>
 
         <form className="space-y-4" onSubmit={handleSubmit(handleSignUp)}>

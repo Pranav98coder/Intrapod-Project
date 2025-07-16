@@ -1,19 +1,18 @@
 import { createContext, useContext, useState } from "react";
-import profileImage from '../assets/profile.jpg'
+import profileImage from "/profile.jpg";
 
 //   Create the Context
 const ProfileContext = createContext();
 
 //   Create the Provider to wrap your app
 export const ProfileProvider = ({ children }) => {
-  
   // Global state for profile
   const [profile, setProfile] = useState({
-    name: "Sams Tabrez",
-    email: "04tabrez@gmail.com",
-    phone: "7846940025",
+    name: "",
+    email: "",
+    phone: "",
     occupation: "Software Developer",
-    image: profileImage
+    image: profileImage,
   });
 
   //Function to update profile
